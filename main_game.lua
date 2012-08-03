@@ -107,10 +107,10 @@ function MainGame:mainGameLoop()
    self.frames = self.frames + 1
 
    if self.frames == 20 then
-      self.wall = Wall(0, 6)
-      self.layer:insertProp( self.wall.props[1] )
-      self.wall:holeAt(5)
-      self.wall:holeAt(6)
+      self.wall = Wall(0, 12)
+      for i,prop in ipairs(self.wall.props) do
+	 self.layer:insertProp( prop )
+      end
    end
 
    if self.movingRight then
