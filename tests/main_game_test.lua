@@ -43,3 +43,10 @@ function test_can_stop_move_right()
    local after_x, after_y = main_game.player.prop:getLoc()
    assert_equal(x - 1, after_x)
 end
+
+function test_wall_is_created_with_holes()
+   for x=1,25 do
+      main_game:mainGameLoop()
+   end
+   assert_table(main_game.wall)
+end

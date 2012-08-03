@@ -1,5 +1,6 @@
 require 'class'
 require 'player'
+require 'wall'
 
 local numSprites = 700
 
@@ -9,6 +10,7 @@ SCREEN_HEIGHT = 480
 MainGame = class()
 
 function MainGame:init()
+   self.frames = 0
    MOAISim.openWindow ("Game!", 640, 960)
    self.viewport = self:createViewport()
    self.layer = self:createLayer()
@@ -102,8 +104,14 @@ function MainGame:createMainGameLoop()
 end
 
 function MainGame:mainGameLoop()
-   local frames = 0
-   frames = frames + 1
+   self.frames = self.frames + 1
+
+   if self.frames == 20 then
+      self.wall = Wall(0, 6)
+      self.layer:insertProp( self.wall.props[1] )
+      self.wall:holeAt(5)
+      self.wall:holeAt(6)
+   end
 
    if self.movingRight then
       self.player:moveRight()
