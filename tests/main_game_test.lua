@@ -44,9 +44,20 @@ function test_can_stop_move_right()
    assert_equal(x - 1, after_x)
 end
 
-function test_wall_is_created_with_holes()
+function test_wall_is_created()
    for x=1,25 do
       main_game:mainGameLoop()
    end
    assert_table(main_game.wall)
+end
+
+function test_wall_moves_towards_you()
+   for x=1,25 do
+      main_game:mainGameLoop()
+   end
+
+   local x, y = main_game.wall.props[1]:getLoc()
+   main_game:mainGameLoop()
+   local new_x, new_y = main_game.wall.props[1]:getLoc()
+   assert_lt(y, new_y)
 end

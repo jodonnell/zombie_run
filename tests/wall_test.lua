@@ -31,3 +31,12 @@ function test_the_wall_is_spread_out_correctly()
    local x, y = wall.props[3]:getLoc()
    assert_equal(width * 2, x)
 end
+
+function test_wall_can_move_down()
+   wall:moveDown()
+
+   for i,prop in ipairs(wall.props) do
+      local x, y = prop:getLoc()
+      assert_lt(470, y)
+   end
+end

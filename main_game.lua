@@ -113,6 +113,10 @@ function MainGame:mainGameLoop()
       end
    end
 
+   if self.wall then
+      self.wall:moveDown()
+   end
+
    if self.movingRight then
       self.player:moveRight()
    end
