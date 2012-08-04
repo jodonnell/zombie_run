@@ -16,12 +16,12 @@ function test_can_move_right()
    player = Player()
    player:moveRight()
    local x, y = player.prop:getLoc()
-   assert_equal(161, x)
+   assert_gt(160, x)
 end
 
 function test_can_move_left()
    player = Player()
    player:moveLeft()
    local x, y = player.prop:getLoc()
-   assert_equal(159, x)
+   assert_lt(160, x)
 end

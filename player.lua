@@ -13,10 +13,10 @@ end
 
 function Player:moveRight()
    local x, y = self.prop:getLoc()
-   self.prop:setLoc(x + 1, y)
+   self.prop:setLoc(x + 2, y)
 end
 
 function Player:moveLeft()
    local x, y = self.prop:getLoc()
-   self.prop:setLoc(x - 1, y)
+   self.prop:setLoc(x - 2, y)
 end
