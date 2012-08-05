@@ -8,7 +8,7 @@ end
 
 function test_can_move_right()
    local x, y = main_game.player.prop:getLoc()
-   main_game.movingRight = true
+   main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
    local after_x, after_y = main_game.player.prop:getLoc()
@@ -17,7 +17,7 @@ end
 
 function test_can_stop_move_right()
    local x, y = main_game.player.prop:getLoc()
-   main_game.movingRight = true
+   main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game.movingRight = false
    main_game:mainGameLoop()
@@ -27,7 +27,7 @@ end
 
 function test_can_move_left()
    local x, y = main_game.player.prop:getLoc()
-   main_game.movingLeft = true
+   main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
    local after_x, after_y = main_game.player.prop:getLoc()
@@ -36,9 +36,9 @@ end
 
 function test_can_stop_move_right()
    local x, y = main_game.player.prop:getLoc()
-   main_game.movingLeft = true
+   main_game.control.movingLeft = true
    main_game:mainGameLoop()
-   main_game.movingLeft = false
+   main_game.control.movingLeft = false
    main_game:mainGameLoop()
    local after_x, after_y = main_game.player.prop:getLoc()
    assert_equal(x - 2, after_x)

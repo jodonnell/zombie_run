@@ -1,6 +1,7 @@
 require 'class'
 require 'player'
 require 'wall'
+require 'control'
 
 local numSprites = 700
 
@@ -18,62 +19,7 @@ function MainGame:init()
    self.player = Player()
    self.layer:insertProp( self.player.prop )
 
-   self:setupTouch()
-end
-
-function MainGame:setupTouch()
-   self.movingRight = false
-   self.movingLeft = false
-
-   if MOAIInputMgr.device.touch then
-      MOAIInputMgr.device.touch:setCallback ( 
-	 
-	 function ( eventType, id, x, y, tapCount )
-	    local adjustedX, adjustedY = self.layer:wndToWorld( x, y )
-
-	    local left = adjustedX < SCREEN_WIDTH / 2
-
-	    if left then
-	       if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
-		  self.movingLeft = true
-	       end
-
-	       if ( eventType == MOAITouchSensor.TOUCH_UP ) then
-		  self.movingLeft = false
-		  self.movingRight = false
-	       end
-	    else
-	       if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
-		  self.movingRight = true
-	       end
-
-	       if ( eventType == MOAITouchSensor.TOUCH_UP ) then
-		  self.movingRight = false
-		  self.movingLeft = false
-	       end
-	    end
-	 end)
-   end
-
-   if MOAIInputMgr.device.keyboard then
-      MOAIInputMgr.device.keyboard:setCallback ( 
-	 function ( key, down )
-
-	    if down == true and key == 101 then
-	       self.movingRight = true
-	    elseif down == false and key == 101 then
-	       self.movingRight = false
-	    end
-
-	    if down == true and key == 97 then
-	       self.movingLeft = true
-	    elseif down == false and key == 97 then
-	       self.movingLeft = false
-	    end
-
-	 end)
-   end
-
+   self.control = Control()
 end
 
 function MainGame:createViewport()
@@ -117,10 +63,10 @@ function MainGame:mainGameLoop()
       self.wall:moveDown()
    end
 
-   if self.movingRight then
+   if self.control.movingRight then
       self.player:moveRight()
    end
-   if self.movingLeft then
+   if self.control.movingLeft then
       self.player:moveLeft()
    end
 
