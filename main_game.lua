@@ -66,12 +66,9 @@ function MainGame:mainGameLoop()
    if self.control.movingRight then
       self.player:moveRight()
    end
+
    if self.control.movingLeft then
       self.player:moveLeft()
    end
 
-end
-
-function MainGame:getSprites()
-   return self.sprites
 end
