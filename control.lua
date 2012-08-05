@@ -24,25 +24,33 @@ function Control:iPhoneControl()
 	 local left = adjustedX < SCREEN_WIDTH / 2
 
 	 if left then
-	    if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
-	       self.movingLeft = true
-	    end
-
-	    if ( eventType == MOAITouchSensor.TOUCH_UP ) then
-	       self.movingLeft = false
-	       self.movingRight = false
-	    end
+	    self:touchOrReleasedLeft(eventType)
 	 else
-	    if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
-	       self.movingRight = true
-	    end
-
-	    if ( eventType == MOAITouchSensor.TOUCH_UP ) then
-	       self.movingRight = false
-	       self.movingLeft = false
-	    end
+	    self:touchOrReleasedRight(eventType)
 	 end
       end)
+end
+
+function Control:touchOrReleasedLeft(eventType)
+   if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
+      self.movingLeft = true
+   end
+
+   if ( eventType == MOAITouchSensor.TOUCH_UP ) then
+      self.movingLeft = false
+      self.movingRight = false
+   end
+end
+
+function Control:touchOrReleasedRight(eventType)
+   if ( eventType == MOAITouchSensor.TOUCH_DOWN ) then
+      self.movingRight = true
+   end
+
+   if ( eventType == MOAITouchSensor.TOUCH_UP ) then
+      self.movingRight = false
+      self.movingLeft = false
+   end
 end
 
 function Control:keyboardControl()
