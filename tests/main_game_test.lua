@@ -48,7 +48,7 @@ function test_wall_is_created()
    for x=1,25 do
       main_game:mainGameLoop()
    end
-   assert_table(main_game.wall)
+   assert_table(main_game.walls[1])
 end
 
 function test_wall_moves_towards_you()
@@ -56,8 +56,8 @@ function test_wall_moves_towards_you()
       main_game:mainGameLoop()
    end
 
-   local x, y = main_game.wall.props[1]:getLoc()
+   local x, y = main_game.walls[1].props[1]:getLoc()
    main_game:mainGameLoop()
-   local new_x, new_y = main_game.wall.props[1]:getLoc()
+   local new_x, new_y = main_game.walls[1].props[1]:getLoc()
    assert_lt(y, new_y)
 end

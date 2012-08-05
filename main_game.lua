@@ -12,6 +12,8 @@ MainGame = class()
 
 function MainGame:init()
    self.frames = 0
+   self.walls = {}
+
    MOAISim.openWindow ("Game!", 640, 960)
    self.viewport = self:createViewport()
    self.layer = self:createLayer()
@@ -53,14 +55,13 @@ function MainGame:mainGameLoop()
    self.frames = self.frames + 1
 
    if self.frames == 20 then
-      self.wall = Wall(0, 12)
-      for i,prop in ipairs(self.wall.props) do
-	 self.layer:insertProp( prop )
-      end
+      self:createWall()
    end
 
-   if self.wall then
-      self.wall:moveDown()
+   if #self.walls > 0 then
+      for i,wall in ipairs(self.walls) do
+	 wall:moveDown()
+      end
    end
 
    if self.control.movingRight then
@@ -71,4 +72,11 @@ function MainGame:mainGameLoop()
       self.player:moveLeft()
    end
 
+end
+
+function MainGame:createWall()
+   table.insert(self.walls, Wall(0, 12))
+   for i,prop in ipairs(self.walls[#self.walls].props) do
+      self.layer:insertProp( prop )
+   end
 end
