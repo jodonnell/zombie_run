@@ -13,6 +13,7 @@ MainGame = class()
 function MainGame:init()
    self.frames = 0
    self.walls = {}
+   self.gameOver = false
 
    MOAISim.openWindow ("Game!", 640, 960)
    self.viewport = self:createViewport()
@@ -40,11 +41,11 @@ function MainGame:createLayer()
 end
 
 function MainGame:createMainGameLoop()
-   local gameOver = false
+
 
    local mainThread = MOAICoroutine.new()
    mainThread:run(function()
-		     while not gameOver do
+		     while not self.gameOver do
 			coroutine.yield()
 			self:mainGameLoop()
 		     end
@@ -64,6 +65,8 @@ function MainGame:mainGameLoop()
       end
    end
 
+   self:checkForCollision()
+
    if self.control.movingRight then
       self.player:moveRight()
    end
@@ -78,5 +81,13 @@ function MainGame:createWall()
    table.insert(self.walls, Wall(0, 12))
    for i,prop in ipairs(self.walls[#self.walls].props) do
       self.layer:insertProp( prop )
+   end
+end
+
+function MainGame:checkForCollision()
+   for i, wall in ipairs(self.walls) do
+      if wall:collidesWith(self.player) then
+	 self.gameOver = true
+      end
    end
 end

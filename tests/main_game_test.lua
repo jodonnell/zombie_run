@@ -61,3 +61,11 @@ function test_wall_moves_towards_you()
    local new_x, new_y = main_game.walls[1].props[1]:getLoc()
    assert_lt(y, new_y)
 end
+
+function test_wall_kills_you()
+   for x=1,140 do
+      main_game:mainGameLoop()
+   end
+
+   assert_true(main_game.gameOver)
+end
