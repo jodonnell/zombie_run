@@ -1,7 +1,8 @@
 require 'class'
 require 'decks'
+require 'sprite'
 
-Player = class()
+Player = class(Sprite)
 
 function Player:init()
    local decks = Decks()
@@ -12,11 +13,11 @@ function Player:init()
 end
 
 function Player:moveRight()
-   local x, y = self.prop:getLoc()
-   self.prop:setLoc(x + 2, y)
+   local x, y = self:getLoc()
+   self:setLoc(x + 2, y)
 end
 
 function Player:moveLeft()
-   local x, y = self.prop:getLoc()
-   self.prop:setLoc(x - 2, y)
+   local x, y = self:getLoc()
+   self:setLoc(x - 2, y)
 end

@@ -38,6 +38,6 @@ end
 
 function test_collision_detection()
    player = Player()
-   player.prop:setLoc(1, 471)
+   player:setLoc(1, 471)
    assert_true(wall:collidesWith(player))
 end
