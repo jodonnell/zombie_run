@@ -79,8 +79,8 @@ end
 
 function MainGame:createWall()
    table.insert(self.walls, Wall(0, 12))
-   for i,prop in ipairs(self.walls[#self.walls].props) do
-      self.layer:insertProp( prop )
+   for i, unit in ipairs(self.walls[#self.walls].units) do
+      self.layer:insertProp( unit.prop )
    end
 end
 
