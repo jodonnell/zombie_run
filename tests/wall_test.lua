@@ -32,13 +32,13 @@ function test_wall_can_move_down()
    wall:moveDown()
 
    for i, unit in ipairs(wall.units) do
-      assert_lt(470, unit.sprite.y)
+      assert_gt(0, unit.sprite.y)
    end
 end
 
 function test_collision_detection()
    player = Player()
    player.sprite.x = 1
-   player.sprite.y = 471
+   player.sprite.y = 0
    assert_true(wall:collidesWith(player.sprite))
 end

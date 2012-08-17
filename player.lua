@@ -6,7 +6,7 @@ Player = class(Sprite)
 function Player:init()
    self.sprite = display.newImage("enemy_bullet.png")
    self.sprite.x = 160
-   self.sprite.y = 100
+   self.sprite.y = 380
 end
 
 function Player:moveRight()

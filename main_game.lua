@@ -28,6 +28,8 @@ function MainGame:createMainGameLoop()
 end
 
 function MainGame:mainGameLoop()
+   if self.gameOver then return end
+
    self.frames = self.frames + 1
 
    if self.frames == 20 then

@@ -10,7 +10,7 @@ function Wall:init(start, length)
       local width = self.units[i].sprite.width
       local x = start + width * (i - 1) + width / 2
       self.units[i].sprite.x = x
-      self.units[i].sprite.y = 470
+      self.units[i].sprite.y = 0
    end
 end
 

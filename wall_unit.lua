@@ -8,7 +8,7 @@ function WallUnit:init()
 end
 
 function WallUnit:moveDown()
-   self.sprite.y = self.sprite.y - 3
+   self.sprite.y = self.sprite.y + 3
 end
 
 

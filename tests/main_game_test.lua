@@ -61,7 +61,7 @@ function test_wall_moves_towards_you()
    local y = main_game.walls[1].units[1].sprite.y
    main_game:mainGameLoop()
    local new_y = main_game.walls[1].units[1].sprite.y
-   assert_lt(y, new_y)
+   assert_gt(y, new_y)
 end
 
 function test_wall_kills_you()
