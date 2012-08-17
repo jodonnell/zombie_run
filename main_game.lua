@@ -69,7 +69,7 @@ local function onScreenTouch( event )
      if event.x > 160 then
 	control.movingRight = true
      else
-	control.moveLeft = true
+	control.movingLeft = true
      end
   elseif event.phase == "moved" then
   elseif event.phase == "ended" or event.phase == "cancelled" then

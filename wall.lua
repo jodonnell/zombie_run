@@ -4,7 +4,6 @@ require 'wall_unit'
 Wall = class()
 
 function Wall:init(start, length)
-   local decks = Decks()
    self.units = {}
    for i=1,length do
       self.units[i] = WallUnit()

@@ -1,5 +1,4 @@
 require 'class'
-require 'decks'
 require 'sprite'
 
 Player = class(Sprite)
