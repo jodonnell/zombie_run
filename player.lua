@@ -5,19 +5,17 @@ require 'sprite'
 Player = class(Sprite)
 
 function Player:init()
-   local decks = Decks()
-   local prop = MOAIProp2D.new()
-   prop:setDeck( decks:enemyBullet() )
-   prop:setLoc(160, 100)
-   self.prop = prop
+   self.sprite = display.newImage("enemy_bullet.png")
+   self.sprite.x = 160
+   self.sprite.y = 100
 end
 
 function Player:moveRight()
-   local x, y = self:getLoc()
-   self:setLoc(x + 2, y)
+   local x = self.sprite.x
+   self.sprite.x = x + 2
 end
 
 function Player:moveLeft()
-   local x, y = self:getLoc()
-   self:setLoc(x - 2, y)
+   local x = self.sprite.x
+   self.sprite.x = x - 2
 end

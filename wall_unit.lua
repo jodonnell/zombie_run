@@ -1,16 +1,22 @@
 require 'class'
-require 'decks'
 require 'sprite'
 
 WallUnit = class(Sprite)
 
-function WallUnit:init(start, length)
-   local decks = Decks()
-   self.prop = MOAIProp2D.new()
-   self.prop:setDeck( decks:wall() )
+function WallUnit:init()
+   self.sprite = display.newImage("wall.png")
 end
 
 function WallUnit:moveDown()
-   local x, y = self:getLoc()
-   self:setLoc(x, y - 3)
+   self.sprite.y = self.sprite.y - 3
+end
+
+
+function WallUnit:collidesWith(sprite)
+    local left = self.sprite.contentBounds.xMin <= sprite.contentBounds.xMin and self.sprite.contentBounds.xMax >= sprite.contentBounds.xMin
+    local right = self.sprite.contentBounds.xMin >= sprite.contentBounds.xMin and self.sprite.contentBounds.xMin <= sprite.contentBounds.xMax
+    local up = self.sprite.contentBounds.yMin <= sprite.contentBounds.yMin and self.sprite.contentBounds.yMax >= sprite.contentBounds.yMin
+    local down = self.sprite.contentBounds.yMin >= sprite.contentBounds.yMin and self.sprite.contentBounds.yMin <= sprite.contentBounds.yMax
+
+    return (left or right) and (up or down)
 end

@@ -4,43 +4,45 @@ require "main_game"
 
 function setup()
    main_game = MainGame()
+   main_game.control.movingRight = false
+   main_game.control.movingLeft = false
 end
 
 function test_can_move_right()
-   local x = main_game.player:getLoc()
+   local x = main_game.player.sprite.x
    main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   local after_x = main_game.player:getLoc()
+   local after_x = main_game.player.sprite.x
    assert_equal(x + 4, after_x)
 end
 
 function test_can_stop_move_right()
-   local x = main_game.player:getLoc()
+   local x = main_game.player.sprite.x
    main_game.control.movingRight = true
    main_game:mainGameLoop()
-   main_game.movingRight = false
+   main_game.control.movingRight = false
    main_game:mainGameLoop()
-   local after_x = main_game.player:getLoc()
+   local after_x = main_game.player.sprite.x
    assert_equal(x + 2, after_x)
 end
 
 function test_can_move_left()
-   local x = main_game.player:getLoc()
+   local x = main_game.player.sprite.x
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   local after_x = main_game.player:getLoc()
+   local after_x = main_game.player.sprite.x
    assert_equal(x - 4, after_x)
 end
 
 function test_can_stop_move_right()
-   local x = main_game.player:getLoc()
+   local x = main_game.player.sprite.x
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game.control.movingLeft = false
    main_game:mainGameLoop()
-   local after_x = main_game.player:getLoc()
+   local after_x = main_game.player.sprite.x
    assert_equal(x - 2, after_x)
 end
 
@@ -56,9 +58,9 @@ function test_wall_moves_towards_you()
       main_game:mainGameLoop()
    end
 
-   local x, y = main_game.walls[1].units[1]:getLoc()
+   local y = main_game.walls[1].units[1].sprite.y
    main_game:mainGameLoop()
-   local new_x, new_y = main_game.walls[1].units[1]:getLoc()
+   local new_y = main_game.walls[1].units[1].sprite.y
    assert_lt(y, new_y)
 end
 

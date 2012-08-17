@@ -10,46 +10,21 @@ SCREEN_HEIGHT = 480
 
 MainGame = class()
 
+control = Control()
+
 function MainGame:init()
    self.frames = 0
    self.walls = {}
    self.gameOver = false
 
-   MOAISim.openWindow ("Game!", 640, 960)
-   self.viewport = self:createViewport()
-   self.layer = self:createLayer()
-   
    self.player = Player()
-   self.layer:insertProp( self.player.prop )
-
-   self.control = Control()
-end
-
-function MainGame:createViewport()
-   local viewport = MOAIViewport.new()
-   viewport:setSize ( 640, 960 )
-   viewport:setScale ( SCREEN_WIDTH, SCREEN_HEIGHT )
-   viewport:setOffset ( -1, -1 )
-   return viewport
-end
-
-function MainGame:createLayer()
-   local layer = MOAILayer2D.new()
-   layer:setViewport( self.viewport )
-   MOAISim.pushRenderPass( layer )
-   return layer
+   self.control = control
 end
 
 function MainGame:createMainGameLoop()
-
-
-   local mainThread = MOAICoroutine.new()
-   mainThread:run(function()
-		     while not self.gameOver do
-			coroutine.yield()
-			self:mainGameLoop()
-		     end
-		  end)
+   while not self.gameOver do
+      self:mainGameLoop()
+   end
 end
 
 function MainGame:mainGameLoop()
@@ -67,11 +42,11 @@ function MainGame:mainGameLoop()
 
    self:checkForCollision()
 
-   if self.control.movingRight then
+   if control.movingRight then
       self.player:moveRight()
    end
 
-   if self.control.movingLeft then
+   if control.movingLeft then
       self.player:moveLeft()
    end
 
@@ -79,15 +54,30 @@ end
 
 function MainGame:createWall()
    table.insert(self.walls, Wall(0, 12))
-   for i, unit in ipairs(self.walls[#self.walls].units) do
-      self.layer:insertProp( unit.prop )
-   end
 end
 
 function MainGame:checkForCollision()
    for i, wall in ipairs(self.walls) do
-      if wall:collidesWith(self.player) then
+      if wall:collidesWith(self.player.sprite) then
 	 self.gameOver = true
       end
    end
 end
+
+local function onScreenTouch( event )
+  if event.phase == "began" then
+     if event.x > 160 then
+	control.movingRight = true
+     else
+	control.moveLeft = true
+     end
+  elseif event.phase == "moved" then
+  elseif event.phase == "ended" or event.phase == "cancelled" then
+     control.movingRight = false
+     control.movingLeft = false
+  end
+
+  return true
+end
+
+Runtime:addEventListener( "touch", onScreenTouch )
