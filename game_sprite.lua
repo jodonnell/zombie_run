@@ -11,15 +11,18 @@ function GameSprite:collidesWith(sprite)
    return (left or right) and (up or down)
 end
 
-
-function GameSprite:getLoc()
-   return self.prop:getLoc()
+function GameSprite:getX()
+   return self.sprite.x
 end
 
-function GameSprite:setLoc(x, y)
-   self.prop:setLoc(x, y)
+function GameSprite:getY()
+   return self.sprite.y
 end
 
-function GameSprite:getDims()
-   return self.sprite.width
+function GameSprite:setX(x)
+   self.sprite.x = x
+end
+
+function GameSprite:setY(y)
+   self.sprite.y = y
 end

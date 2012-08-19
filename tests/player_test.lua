@@ -12,12 +12,10 @@ end
 
 function test_can_move_right()
    player:moveRight()
-   local x = player.sprite.x
-   assert_gt(160, x)
+   assert_gt(160, player:getX())
 end
 
 function test_can_move_left()
    player:moveLeft()
-   local x = player.sprite.x
-   assert_lt(160, x)
+   assert_lt(160, player:getX())
 end

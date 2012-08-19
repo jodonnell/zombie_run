@@ -3,13 +3,7 @@ require 'player'
 require 'wall'
 require 'control'
 
-local numSprites = 700
-
-SCREEN_WIDTH = 320
-SCREEN_HEIGHT = 480
-
 MainGame = class()
-
 control = Control()
 
 function MainGame:init()

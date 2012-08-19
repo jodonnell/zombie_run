@@ -1,7 +1,7 @@
 require 'class'
-require 'sprite'
+require 'game_sprite'
 
-Player = class(Sprite)
+Player = class(GameSprite)
 
 function Player:init()
    self.sprite = display.newImage("enemy_bullet.png")
@@ -11,10 +11,10 @@ end
 
 function Player:moveRight()
    local x = self.sprite.x
-   self.sprite.x = x + 2
+   self:setX(self:getX() + 2)
 end
 
 function Player:moveLeft()
    local x = self.sprite.x
-   self.sprite.x = x - 2
+   self:setX(self:getX() - 2)
 end
