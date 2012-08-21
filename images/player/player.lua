@@ -10,7 +10,7 @@ function getSpriteSheetData()
 		frames = {
 		
 			{
-				name = "enemy_bullet_1.png",
+				name = "player_1.png",
 				spriteColorRect = { x = 2, y = 2, width = 12, height = 28 }, 
 				textureRect = { x = 28, y = 0, width = 12, height = 28 }, 
 				spriteSourceSize = { width = 16, height = 32 }, 
@@ -19,7 +19,7 @@ function getSpriteSheetData()
 			},
 		
 			{
-				name = "enemy_bullet_2.png",
+				name = "player_2.png",
 				spriteColorRect = { x = 2, y = 2, width = 12, height = 28 }, 
 				textureRect = { x = 14, y = 0, width = 12, height = 28 }, 
 				spriteSourceSize = { width = 16, height = 32 }, 
@@ -28,7 +28,7 @@ function getSpriteSheetData()
 			},
 		
 			{
-				name = "enemy_bullet_3.png",
+				name = "player_3.png",
 				spriteColorRect = { x = 2, y = 2, width = 12, height = 28 }, 
 				textureRect = { x = 0, y = 0, width = 12, height = 28 }, 
 				spriteSourceSize = { width = 16, height = 32 }, 
@@ -37,7 +37,7 @@ function getSpriteSheetData()
 			},
 		
 			{
-				name = "enemy_bullet_4.png",
+				name = "player_4.png",
 				spriteColorRect = { x = 2, y = 2, width = 12, height = 28 }, 
 				textureRect = { x = 42, y = 0, width = 12, height = 28 }, 
 				spriteSourceSize = { width = 16, height = 32 }, 

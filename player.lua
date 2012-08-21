@@ -4,9 +4,9 @@ require 'game_sprite'
 Player = class(GameSprite)
 
 function Player:init()
-   local spriteSheetData = require("enemy_bullet").getSpriteSheetData()
+   local spriteSheetData = require("images.player.player").getSpriteSheetData()
    local options = { spriteSheetFrames = spriteSheetData.frames }
-   local imageSheet = graphics.newImageSheet( "enemy_bullet.png", options )
+   local imageSheet = graphics.newImageSheet( "images/player/player.png", options )
 
    self.sprite = display.newSprite(imageSheet, {start=1, count=4, time=1000})
    self.sprite:play()
