@@ -4,17 +4,19 @@ require 'game_sprite'
 Player = class(GameSprite)
 
 function Player:init()
-   self.sprite = display.newImage("enemy_bullet.png")
-   self.sprite.x = 160
-   self.sprite.y = 380
+   local spriteSheetData = require("enemy_bullet").getSpriteSheetData()
+   local options = { spriteSheetFrames = spriteSheetData.frames }
+   local imageSheet = graphics.newImageSheet( "enemy_bullet.png", options )
+
+   self.sprite = display.newSprite(imageSheet, {start=1, count=4, time=1000})
+   self.sprite:play()
+   self:setPos(160, 380)
 end
 
 function Player:moveRight()
-   local x = self.sprite.x
    self:setX(self:getX() + 2)
 end
 
 function Player:moveLeft()
-   local x = self.sprite.x
    self:setX(self:getX() - 2)
 end

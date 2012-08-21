@@ -9,8 +9,8 @@ function Wall:init(start, length)
       self.units[i] = WallUnit()
       local width = self.units[i].sprite.width
       local x = start + width * (i - 1) + width / 2
-      self.units[i].sprite.x = x
-      self.units[i].sprite.y = 0
+      self.units[i]:setX(x)
+      self.units[i]:setY(0)
    end
 end
 
