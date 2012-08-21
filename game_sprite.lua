@@ -27,6 +27,10 @@ function GameSprite:setY(y)
    self.sprite.y = y
 end
 
+function GameSprite:getPos()
+   return self.sprite.x, self.sprite.y
+end
+
 function GameSprite:setPos(x, y)
    self.sprite.x = x
    self.sprite.y = y

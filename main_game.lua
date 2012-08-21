@@ -2,6 +2,7 @@ require 'class'
 require 'player'
 require 'wall'
 require 'control'
+require 'zombie'
 
 MainGame = class()
 control = Control()
@@ -9,6 +10,7 @@ control = Control()
 function MainGame:init()
    self.frames = 0
    self.walls = {}
+   self.zombies = {}
    self.gameOver = false
 
    self.player = Player()
@@ -30,9 +32,19 @@ function MainGame:mainGameLoop()
       self:createWall()
    end
 
+   if self.frames % 80 == 0 then
+      self:createZombie()
+   end
+
    if #self.walls > 0 then
       for i,wall in ipairs(self.walls) do
 	 wall:moveDown()
+      end
+   end
+
+   if #self.zombies > 0 then
+      for i,zombie in ipairs(self.zombies) do
+	 zombie:moveTowards(self.player.sprite)
       end
    end
 
@@ -50,6 +62,10 @@ end
 
 function MainGame:createWall()
    table.insert(self.walls, Wall(0, 12))
+end
+
+function MainGame:createZombie()
+   table.insert(self.zombies, Zombie(100, 0))
 end
 
 function MainGame:checkForCollision()

@@ -9,65 +9,61 @@ function setup()
 end
 
 function test_can_move_right()
-   local x = main_game.player.sprite.x
+   local x = main_game.player:getX()
    main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   local after_x = main_game.player.sprite.x
-   assert_equal(x + 4, after_x)
+   assert_equal(x + 4, main_game.player:getX())
 end
 
 function test_can_stop_move_right()
-   local x = main_game.player.sprite.x
+   local x = main_game.player:getX()
    main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game.control.movingRight = false
    main_game:mainGameLoop()
-   local after_x = main_game.player.sprite.x
-   assert_equal(x + 2, after_x)
+   assert_equal(x + 2, main_game.player:getX())
 end
 
 function test_can_move_left()
-   local x = main_game.player.sprite.x
+   local x = main_game.player:getX()
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   local after_x = main_game.player.sprite.x
-   assert_equal(x - 4, after_x)
+   assert_equal(x - 4, main_game.player:getX())
 end
 
 function test_can_stop_move_right()
-   local x = main_game.player.sprite.x
+   local x = main_game.player:getX()
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game.control.movingLeft = false
    main_game:mainGameLoop()
-   local after_x = main_game.player.sprite.x
-   assert_equal(x - 2, after_x)
+   assert_equal(x - 2, main_game.player:getX())
 end
 
 function test_wall_is_created()
-   for x=1,25 do
-      main_game:mainGameLoop()
-   end
+   for x=1,25 do main_game:mainGameLoop() end
    assert_table(main_game.walls[1])
 end
 
 function test_wall_moves_towards_you()
-   for x=1,25 do
-      main_game:mainGameLoop()
-   end
+   for x=1,25 do main_game:mainGameLoop() end
 
-   local y = main_game.walls[1].units[1].sprite.y
+   local y = main_game.walls[1].units[1]:getY()
    main_game:mainGameLoop()
-   local new_y = main_game.walls[1].units[1].sprite.y
-   assert_gt(y, new_y)
+   assert_gt(y, main_game.walls[1].units[1]:getY())
 end
 
 function test_wall_kills_you()
-   for x=1,140 do
-      main_game:mainGameLoop()
-   end
-
+   for x=1,140 do main_game:mainGameLoop() end
    assert_true(main_game.gameOver)
+end
+
+function test_zombie_moves_towards_you()
+   for x=1,85 do main_game:mainGameLoop() end
+
+   local y = main_game.zombies[1]:getY()
+   main_game:mainGameLoop()
+   assert_gt(y, main_game.zombies[1]:getY())
 end
