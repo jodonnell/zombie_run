@@ -9,18 +9,17 @@ function Zombie:init(x, y)
 end
 
 function Zombie:moveTowards(point)
+   if point.y > self:getY() then
+      self:setY(self:getY() + 4)
+   elseif point.y + 80 < self:getY() then
+      --self:setY(self:getY() + 1)
+   else
+      self:setY(self:getY() + 1)
+   end
+
    if point.x > self:getX() then
       self:setX(self:getX() + 1)
    elseif point.x < self:getX() then
       self:setX(self:getX() - 1)
    end
-
-   if point.y > self:getY() then
-      self:setY(self:getY() + 4)
-   elseif point.y < self:getY() then
-      self:setY(self:getY() + 2)
-   else
-      self:setY(self:getY() + 1)
-   end
-
 end

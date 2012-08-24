@@ -29,3 +29,17 @@ function test_can_be_attracted_to_point()
    assert_gt(100, x)
    assert_gt(100, y)
 end
+
+function test_when_zombie_passes_player_they_join_the_horde()
+   zombie:moveTowards({x=100, y=100})
+   local x, y = zombie:getPos()
+   assert_equal(100, x)
+   assert_equal(101, y)
+
+   zombie:moveTowards({x=100, y=100})
+   assert_equal(102, zombie:getY())
+
+
+   for x=1,83 do zombie:moveTowards({x=100, y=100}) end
+   assert_equal(181, zombie:getY())
+end
