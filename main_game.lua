@@ -69,8 +69,13 @@ function MainGame:createZombie()
 end
 
 function MainGame:checkForCollision()
-   for i, wall in ipairs(self.walls) do
-      if wall:collidesWith(self.player.sprite) then
+   self:checkForCollisionWith(self.walls)
+   self:checkForCollisionWith(self.zombies)
+end
+
+function MainGame:checkForCollisionWith(sprites)
+   for i, sprite in ipairs(sprites) do
+      if sprite:collidesWith(self.player.sprite) then
 	 self.gameOver = true
       end
    end

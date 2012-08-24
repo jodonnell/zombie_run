@@ -67,3 +67,10 @@ function test_zombie_moves_towards_you()
    main_game:mainGameLoop()
    assert_gt(y, main_game.zombies[1]:getY())
 end
+
+function test_zombie_will_kill_the_player()
+   main_game:createZombie()
+
+   for x=1,90 do main_game:mainGameLoop() end
+   assert_true(main_game.gameOver)
+end
