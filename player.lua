@@ -8,7 +8,7 @@ function Player:init()
    local options = { spriteSheetFrames = spriteSheetData.frames }
    local imageSheet = graphics.newImageSheet( "images/player/player.png", options )
 
-   self.sprite = display.newSprite(imageSheet, {start=1, count=4, time=1000})
+   self.sprite = display.newSprite(imageSheet, {start=1, count=8, time=1000})
    self.sprite:play()
    self:setPos(160, 380)
 end

@@ -13,6 +13,9 @@ function MainGame:init()
    self.zombies = {}
    self.gameOver = false
 
+   color = display.newRect(0, 0, display.contentWidth, display.contentHeight)
+   color:setFillColor(200,200,200)
+
    self.player = Player()
    self.control = control
 end
