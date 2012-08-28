@@ -1,4 +1,5 @@
 require "main_game"
+require "levels.level_1"
 
 if os.getenv("LUA_TEST") then
    require "lunatest.lunatest"
@@ -13,7 +14,7 @@ if os.getenv("LUA_TEST") then
 end
 
 
-local main_game = MainGame()
+local main_game = MainGame(Level1())
 
 function loop()
    main_game:mainGameLoop()

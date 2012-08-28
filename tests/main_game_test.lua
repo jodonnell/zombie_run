@@ -1,9 +1,10 @@
 module(..., package.seeall)
 
 require "main_game"
+require "levels.test_level"
 
 function setup()
-   main_game = MainGame()
+   main_game = MainGame(TestLevel())
    main_game.control.movingRight = false
    main_game.control.movingLeft = false
 end
@@ -69,7 +70,7 @@ function test_zombie_moves_towards_you()
 end
 
 function test_zombie_will_kill_the_player()
-   main_game:createZombie()
+   main_game:createZombie(100, 0)
 
    for x=1,90 do main_game:mainGameLoop() end
    assert_true(main_game.gameOver)

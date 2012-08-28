@@ -7,11 +7,13 @@ require 'zombie'
 MainGame = class()
 control = Control()
 
-function MainGame:init()
+function MainGame:init(level)
    self.frames = 0
    self.walls = {}
    self.zombies = {}
    self.gameOver = false
+
+   self.level = level
 
    color = display.newRect(0, 0, display.contentWidth, display.contentHeight)
    color:setFillColor(200,200,200)
@@ -31,14 +33,8 @@ function MainGame:mainGameLoop()
 
    self.frames = self.frames + 1
 
-   if self.frames == 20 then
-      self:createWall()
-   end
-
-   if self.frames % 80 == 0 then
-      self:createZombie()
-   end
-
+   self:levelEvents()
+   
    if #self.walls > 0 then
       for i,wall in ipairs(self.walls) do
 	 wall:moveDown()
@@ -60,15 +56,18 @@ function MainGame:mainGameLoop()
    if control.movingLeft then
       self.player:moveLeft()
    end
-
 end
 
-function MainGame:createWall()
-   table.insert(self.walls, Wall(0, 12))
+function MainGame:levelEvents()
+   self.level:newFrame(self.frames, self)
 end
 
-function MainGame:createZombie()
-   table.insert(self.zombies, Zombie(100, 0))
+function MainGame:createWall(start, length)
+   table.insert(self.walls, Wall(start, length))
+end
+
+function MainGame:createZombie(x, y)
+   table.insert(self.zombies, Zombie(x, y))
 end
 
 function MainGame:checkForCollision()
