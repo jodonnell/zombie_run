@@ -15,8 +15,10 @@ end
 
 function Player:moveRight()
    self:setX(self:getX() + 2)
+   self.sprite.xScale = 1
 end
 
 function Player:moveLeft()
    self:setX(self:getX() - 2)
+   self.sprite.xScale = -1
 end
