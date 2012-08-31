@@ -20,6 +20,27 @@ function MainGame:init(level)
 
    self.player = Player()
    self.control = control
+
+   self.removeWallEvent = function(event) self:removeWall(event) end
+
+   Runtime:addEventListener("wallOffscreen", self.removeWallEvent)
+end
+
+function MainGame:cleanup()
+   Runtime:removeEventListener("wallOffscreen", self.removeWallEvent)
+end
+
+function MainGame:removeWall(event)
+   wallToRemove = 0
+   for i,wall in ipairs(self.walls) do
+      if wall == event.target then
+	 wallToRemove = i
+      end
+   end
+
+   if wallToRemove ~= 0 then
+      table.remove(self.walls, wallToRemove)
+   end
 end
 
 function MainGame:createMainGameLoop()

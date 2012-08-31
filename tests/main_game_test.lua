@@ -9,6 +9,11 @@ function setup()
    main_game.control.movingLeft = false
 end
 
+function teardown()
+   main_game:cleanup()
+   main_game = nil
+end
+
 function test_can_move_right()
    local x = main_game.player:getX()
    main_game.control.movingRight = true
@@ -74,4 +79,10 @@ function test_zombie_will_kill_the_player()
 
    for x=1,90 do main_game:mainGameLoop() end
    assert_true(main_game.gameOver)
+end
+
+function test_wall_is_removed_when_receiving_event()
+   for x=1,25 do main_game:mainGameLoop() end
+   Runtime:dispatchEvent({name = "wallOffscreen", target = main_game.walls[1]})
+   assert_equal(0, #main_game.walls)
 end

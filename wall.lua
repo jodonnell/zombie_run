@@ -18,6 +18,14 @@ function Wall:moveDown()
    for i, unit in ipairs(self.units) do
       unit:moveDown()
    end
+
+   if self.units[1]:getY() > 480 then
+      Runtime:dispatchEvent({name = "wallOffscreen", target = self})
+
+      for i, unit in ipairs(self.units) do
+	 unit.sprite:removeSelf()
+      end
+   end
 end
 
 function Wall:collidesWith(sprite)

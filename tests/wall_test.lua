@@ -42,3 +42,19 @@ function test_collision_detection()
    player.sprite.y = 0
    assert_true(wall:collidesWith(player.sprite))
 end
+
+function test_wall_is_removed_when_offscreen()
+   local called_listener = function(  )
+      pass = true
+   end
+   pass = false
+   Runtime:addEventListener("wallOffscreen", called_listener)
+   for x=1,200 do
+      wall:moveDown()
+      if pass then break end
+   end
+   Runtime:removeEventListener("wallOffscreen", called_listener)
+   assert_true(pass)
+
+   assert_table(wall.units[1].sprite)
+end
