@@ -35,3 +35,7 @@ function GameSprite:setPos(x, y)
    self.sprite.x = x
    self.sprite.y = y
 end
+
+function GameSprite:moveDown()
+   self.sprite.y = self.sprite.y + 4
+end

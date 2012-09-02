@@ -13,6 +13,7 @@ if os.getenv("LUA_TEST") then
    os.exit()
 end
 
+display.setStatusBar( display.HiddenStatusBar )
 
 local main_game = MainGame(Level1())
 
@@ -21,3 +22,8 @@ function loop()
 end
 
 Runtime:addEventListener( "enterFrame", loop )
+
+local fps = require("fps")
+local performance = fps.PerformanceOutput.new();
+performance.group.x, performance.group.y = display.contentWidth/2,  0;
+performance.alpha = 0.6; -- So it doesn't get in the way of the rest of the scene

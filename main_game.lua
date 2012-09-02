@@ -1,6 +1,8 @@
 require 'class'
 require 'player'
 require 'wall'
+require 'chair'
+require 'water_cooler'
 require 'control'
 require 'zombie'
 
@@ -11,12 +13,11 @@ function MainGame:init(level)
    self.frames = 0
    self.walls = {}
    self.zombies = {}
+   self.obstacles = {}
+   self.carpets = MainGame:createCarpets()
    self.gameOver = false
 
    self.level = level
-
-   color = display.newRect(0, 0, display.contentWidth, display.contentHeight)
-   color:setFillColor(200,200,200)
 
    self.player = Player()
    self.control = control
@@ -28,6 +29,24 @@ end
 
 function MainGame:cleanup()
    Runtime:removeEventListener("wallOffscreen", self.removeWallEvent)
+end
+
+function MainGame:createCarpets()
+   local carpets = {}
+   for x=0,10 do
+      for y=0,18 do
+	 local carpet = nil
+	 if (x + y) % 2 == 0 then
+	    carpet = display.newImage("images/floor_tiles/carpet_1.png")
+	 else
+	    carpet = display.newImage("images/floor_tiles/carpet_2.png")
+	 end
+	 table.insert(carpets, carpet)
+	 carpet.y = y * carpet.height
+	 carpet.x = x * carpet.width
+      end
+   end
+   return carpets
 end
 
 function MainGame:removeWall(event)
@@ -70,6 +89,10 @@ function MainGame:mainGameLoop()
 
    self:checkForCollision()
 
+   self:moveCarpets()
+
+   self:moveObstacles()
+
    if control.movingRight then
       self.player:moveRight()
    end
@@ -91,9 +114,18 @@ function MainGame:createZombie(x, y)
    table.insert(self.zombies, Zombie(x, y))
 end
 
+function MainGame:createChair(x)
+   table.insert(self.obstacles, Chair(x))
+end
+
+function MainGame:createWaterCooler(x)
+   table.insert(self.obstacles, WaterCooler(x))
+end
+
 function MainGame:checkForCollision()
    self:checkForCollisionWith(self.walls)
    self:checkForCollisionWith(self.zombies)
+   self:checkForCollisionWith(self.obstacles)
 end
 
 function MainGame:checkForCollisionWith(sprites)
@@ -101,6 +133,32 @@ function MainGame:checkForCollisionWith(sprites)
       if sprite:collidesWith(self.player.sprite) then
 	 self.gameOver = true
       end
+   end
+end
+
+function MainGame:moveObstacles()
+   for i, obstacle in ipairs(self.obstacles) do
+      obstacle:moveDown()
+   end
+end
+
+
+function MainGame:moveCarpets()
+   minCarpet = 1000
+   for i, carpet in ipairs(self.carpets) do
+      if carpet.y < minCarpet then
+	 minCarpet = carpet.y
+      end
+   end
+
+   for i, carpet in ipairs(self.carpets) do
+      carpet.y = carpet.y + 4
+
+
+      if carpet.y > (480 / carpet.height + 1) * carpet.height then
+	 carpet.y = minCarpet - carpet.height + 4
+      end
+      
    end
 end
 

@@ -86,3 +86,34 @@ function test_wall_is_removed_when_receiving_event()
    Runtime:dispatchEvent({name = "wallOffscreen", target = main_game.walls[1]})
    assert_equal(0, #main_game.walls)
 end
+
+function test_carpets_show_up()
+   assert_gt(100, #main_game.carpets)
+end
+
+function test_carpets_move()
+   local old_y = main_game.carpets[1].y
+   main_game:mainGameLoop()
+   assert_gt(old_y, main_game.carpets[1].y)
+end
+
+function test_can_create_chair()
+   main_game:createChair(10)
+   assert_equal(10, main_game.obstacles[1]:getX())
+end
+
+function test_obstacles_move_down()
+   main_game:createChair(10)
+   local old_y = main_game.obstacles[1]:getY()
+   main_game:mainGameLoop()
+
+   assert_gt(old_y, main_game.obstacles[1]:getY())
+end
+
+function test_collides_with_obstacles()
+   main_game:createChair(main_game.player:getX())
+   main_game:mainGameLoop()
+
+   for x=1,90 do main_game:mainGameLoop() end
+   assert_true(main_game.gameOver)
+end
