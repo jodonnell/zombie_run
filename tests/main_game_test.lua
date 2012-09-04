@@ -19,16 +19,19 @@ function test_can_move_right()
    main_game.control.movingRight = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   assert_equal(x + 4, main_game.player:getX())
+   assert_gt(x, main_game.player:getX())
 end
 
 function test_can_stop_move_right()
    local x = main_game.player:getX()
    main_game.control.movingRight = true
    main_game:mainGameLoop()
+   assert_gt(x, main_game.player:getX())
+   
+   local new_x = main_game.player:getX()
    main_game.control.movingRight = false
    main_game:mainGameLoop()
-   assert_equal(x + 2, main_game.player:getX())
+   assert_equal(new_x, main_game.player:getX())
 end
 
 function test_can_move_left()
@@ -36,16 +39,19 @@ function test_can_move_left()
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
    main_game:mainGameLoop()
-   assert_equal(x - 4, main_game.player:getX())
+   assert_lt(x, main_game.player:getX())
 end
 
-function test_can_stop_move_right()
+function test_can_stop_move_left()
    local x = main_game.player:getX()
    main_game.control.movingLeft = true
    main_game:mainGameLoop()
+   assert_lt(x, main_game.player:getX())
+
+   local new_x = main_game.player:getX()
    main_game.control.movingLeft = false
    main_game:mainGameLoop()
-   assert_equal(x - 2, main_game.player:getX())
+   assert_equal(new_x, main_game.player:getX())
 end
 
 function test_wall_is_created()
