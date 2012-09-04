@@ -55,26 +55,25 @@ function test_can_stop_move_left()
 end
 
 function test_wall_is_created()
-   for x=1,25 do main_game:mainGameLoop() end
+   main_game:createWall(20, 2)
    assert_table(main_game.walls[1])
 end
 
 function test_wall_moves_towards_you()
-   for x=1,25 do main_game:mainGameLoop() end
-
+   main_game:createWall(20, 2)
    local y = main_game.walls[1].units[1]:getY()
    main_game:mainGameLoop()
    assert_gt(y, main_game.walls[1].units[1]:getY())
 end
 
 function test_wall_kills_you()
-   for x=1,140 do main_game:mainGameLoop() end
+   main_game:createWall(120, 5)
+   for x=1,100 do main_game:mainGameLoop() end
    assert_true(main_game.gameOver)
 end
 
 function test_zombie_moves_towards_you()
-   for x=1,85 do main_game:mainGameLoop() end
-
+   main_game:createZombie(100, 0)
    local y = main_game.zombies[1]:getY()
    main_game:mainGameLoop()
    assert_gt(y, main_game.zombies[1]:getY())
