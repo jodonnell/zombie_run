@@ -6,8 +6,11 @@ function setup()
    wall = Wall(0, 6)
 end
 
-function test_has_sprite()
-   assert_table(wall.units[1].sprite)
+function test_has_correct_sprites()
+   assert_true(wall.units[1]:is_a(WallUnitLeft))
+   assert_true(wall.units[2]:is_a(WallUnit))
+   assert_true(wall.units[#wall.units]:is_a(WallUnitRight))
+   assert_true(wall.units[4]:is_a(WallUnitCracked))
 end
 
 function test_contains_the_right_length_of_props()
