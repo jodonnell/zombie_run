@@ -107,6 +107,11 @@ function test_can_create_chair()
    assert_equal(10, main_game.obstacles[1]:getX())
 end
 
+function test_can_create_filing_cabinet()
+   main_game:createFilingCabinet(10)
+   assert_equal(10, main_game.obstacles[1]:getX())
+end
+
 function test_obstacles_move_down()
    main_game:createChair(10)
    local old_y = main_game.obstacles[1]:getY()

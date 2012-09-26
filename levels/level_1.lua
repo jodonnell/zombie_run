@@ -18,4 +18,9 @@ function Level1:newFrame(frameNum, mainGame)
    if frameNum % 280 == 0 then
       mainGame:createChair(math.random(300))
    end
+
+   if frameNum % 300 == 0 then
+      mainGame:createFilingCabinet(math.random(300))
+   end
+
 end

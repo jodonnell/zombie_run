@@ -5,6 +5,7 @@ require 'chair'
 require 'water_cooler'
 require 'control'
 require 'zombie'
+require 'filing_cabinet'
 
 MainGame = class()
 control = Control()
@@ -116,6 +117,10 @@ end
 
 function MainGame:createChair(x)
    table.insert(self.obstacles, Chair(x))
+end
+
+function MainGame:createFilingCabinet(x)
+   table.insert(self.obstacles, FilingCabinet(x))
 end
 
 function MainGame:createWaterCooler(x)
