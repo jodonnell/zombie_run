@@ -11,8 +11,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_1.png",
-				spriteColorRect = { x = 7, y = 11, width = 16, height = 44 }, 
-				textureRect = { x = 58, y = 0, width = 16, height = 44 }, 
+				spriteColorRect = { x = 7, y = 13, width = 16, height = 46 }, 
+				textureRect = { x = 18, y = 50, width = 16, height = 46 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -20,8 +20,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_2.png",
-				spriteColorRect = { x = 8, y = 12, width = 16, height = 44 }, 
-				textureRect = { x = 76, y = 0, width = 16, height = 44 }, 
+				spriteColorRect = { x = 8, y = 14, width = 16, height = 44 }, 
+				textureRect = { x = 56, y = 48, width = 16, height = 44 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -29,8 +29,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_3.png",
-				spriteColorRect = { x = 8, y = 9, width = 16, height = 46 }, 
-				textureRect = { x = 20, y = 48, width = 16, height = 46 }, 
+				spriteColorRect = { x = 8, y = 11, width = 16, height = 48 }, 
+				textureRect = { x = 0, y = 50, width = 16, height = 48 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -38,8 +38,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_4.png",
-				spriteColorRect = { x = 6, y = 8, width = 20, height = 46 }, 
-				textureRect = { x = 0, y = 0, width = 20, height = 46 }, 
+				spriteColorRect = { x = 6, y = 10, width = 18, height = 48 }, 
+				textureRect = { x = 0, y = 0, width = 18, height = 48 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -47,8 +47,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_5.png",
-				spriteColorRect = { x = 5, y = 11, width = 18, height = 44 }, 
-				textureRect = { x = 38, y = 48, width = 18, height = 44 }, 
+				spriteColorRect = { x = 5, y = 13, width = 18, height = 46 }, 
+				textureRect = { x = 38, y = 0, width = 18, height = 46 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -56,8 +56,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_6.png",
-				spriteColorRect = { x = 7, y = 12, width = 16, height = 44 }, 
-				textureRect = { x = 40, y = 0, width = 16, height = 44 }, 
+				spriteColorRect = { x = 7, y = 14, width = 16, height = 44 }, 
+				textureRect = { x = 58, y = 0, width = 16, height = 44 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -65,8 +65,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_7.png",
-				spriteColorRect = { x = 8, y = 9, width = 16, height = 46 }, 
-				textureRect = { x = 22, y = 0, width = 16, height = 46 }, 
+				spriteColorRect = { x = 8, y = 11, width = 16, height = 48 }, 
+				textureRect = { x = 20, y = 0, width = 16, height = 48 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
@@ -74,8 +74,8 @@ function getSpriteSheetData()
 		
 			{
 				name = "player_8.png",
-				spriteColorRect = { x = 8, y = 8, width = 18, height = 46 }, 
-				textureRect = { x = 0, y = 48, width = 18, height = 46 }, 
+				spriteColorRect = { x = 8, y = 10, width = 16, height = 48 }, 
+				textureRect = { x = 38, y = 48, width = 16, height = 48 }, 
 				spriteSourceSize = { width = 32, height = 64 }, 
 				spriteTrimmed = true,
 				textureRotated = false
