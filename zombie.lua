@@ -4,7 +4,13 @@ require 'game_sprite'
 Zombie = class(GameSprite)
 
 function Zombie:init(x, y)
-   self.sprite = display.newImage("images/wall/wall.png")
+   local spriteSheetData = require("images.zombies.zombie").getSpriteSheetData()
+   local options = { spriteSheetFrames = spriteSheetData.frames }
+   local imageSheet = graphics.newImageSheet( "images/zombies/zombie.png", options )
+
+   self.sprite = display.newSprite(imageSheet, {start=1, count=6, time=1000})
+   self.sprite:play()
+
    self:setPos(x, y)
 end
 
