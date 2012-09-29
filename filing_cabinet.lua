@@ -7,4 +7,5 @@ function FilingCabinet:init(x)
    self.sprite = display.newImage("images/obstacles/filecabinet.png")
    self:setX(x)
    self:setY(0)
+   self.sprite:scale(1.2, 1.2)
 end

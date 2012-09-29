@@ -39,8 +39,10 @@ function MainGame:createCarpets()
 	 local carpet = nil
 	 if (x + y) % 2 == 0 then
 	    carpet = display.newImage("images/floor_tiles/carpet_1.png")
+	    carpet:scale(scaleFactor, scaleFactor)
 	 else
 	    carpet = display.newImage("images/floor_tiles/carpet_2.png")
+	    carpet:scale(scaleFactor, scaleFactor)
 	 end
 	 table.insert(carpets, carpet)
 	 carpet.y = y * carpet.height

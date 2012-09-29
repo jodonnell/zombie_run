@@ -11,14 +11,19 @@ function Player:init()
    self.sprite = display.newSprite(imageSheet, {start=1, count=8, time=1000})
    self.sprite:play()
    self:setPos(160, 380)
+   self.sprite:scale(scaleFactor, scaleFactor)
 end
 
 function Player:moveRight()
    self:setX(self:getX() + 3)
-   self.sprite.xScale = 1
+   if (self.sprite.xScale < 0) then
+      self.sprite.xScale = -1 * self.sprite.xScale;
+   end
 end
 
 function Player:moveLeft()
    self:setX(self:getX() - 3)
-   self.sprite.xScale = -1
+   if (self.sprite.xScale > 0) then
+      self.sprite.xScale = -1 * self.sprite.xScale;
+   end
 end

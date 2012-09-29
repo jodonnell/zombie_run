@@ -12,6 +12,7 @@ function Zombie:init(x, y)
    self.sprite:play()
 
    self:setPos(x, y)
+   self.sprite:scale(scaleFactor, scaleFactor)
 end
 
 function Zombie:moveTowards(point)

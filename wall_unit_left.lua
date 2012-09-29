@@ -5,4 +5,5 @@ WallUnitLeft = class(GameSprite)
 
 function WallUnitLeft:init()
    self.sprite = display.newImage("images/wall/wall_end_L.png")
+   self.sprite:scale(scaleFactor, scaleFactor)
 end
