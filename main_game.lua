@@ -113,8 +113,8 @@ function MainGame:createWall(start, length)
    table.insert(self.walls, Wall(start, length))
 end
 
-function MainGame:createZombie(x, y)
-   table.insert(self.zombies, Zombie(x, y))
+function MainGame:createZombie(x)
+   table.insert(self.zombies, Zombie(x))
 end
 
 function MainGame:createChair(x)

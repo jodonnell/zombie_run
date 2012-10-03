@@ -8,7 +8,7 @@ function Level1:newFrame(frameNum, mainGame)
    end
 
    if frameNum % 140 == 0 then
-      mainGame:createZombie(math.random(300), 0)
+      mainGame:createZombie(math.random(300))
    end
 
    if frameNum % 180 == 0 then

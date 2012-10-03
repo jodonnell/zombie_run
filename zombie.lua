@@ -11,7 +11,7 @@ function Zombie:init(x, y)
    self.sprite = display.newSprite(imageSheet, {start=1, count=6, time=1000})
    self.sprite:play()
 
-   self:setPos(x, y)
+   self:setPos(x, -self.sprite.height)
    self.sprite:scale(scaleFactor, scaleFactor)
 end
 

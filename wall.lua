@@ -22,7 +22,7 @@ function Wall:init(start, length)
       local width = self.units[i].sprite.width
       local x = start + width * (i - 1) + width / 2
       self.units[i]:setX(x)
-      self.units[i]:setY(0)
+      self.units[i]:setY(-self.units[i].sprite.height)
    end
 end
 
